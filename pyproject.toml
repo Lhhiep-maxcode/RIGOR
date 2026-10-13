@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rigor-leakage"
+version = "0.1.0"
+description = "Attention-calibrated leakage detection and online leakage-safe generation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "accelerate",
+    "datasets",
+    "matplotlib",
+    "numpy",
+    "openai",
+    "torch",
+    "tqdm",
+    "transformers",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+rigor-calibrate = "rigor.detector.calibrate:main"
+rigor-evaluate-detector = "rigor.detector.evaluate:main"
+rigor-generate = "rigor.generation.generate:main"
+rigor-evaluate-traces = "rigor.evaluation.trace_quality:main"
+
+[tool.setuptools.packages.find]
+include = ["rigor*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
